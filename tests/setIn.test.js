@@ -2,19 +2,19 @@ import { expect } from "chai";
 import { setIn } from "../src/setIn";
 
 describe('setIn should perform immutable set', () => {    
-  // it('shallow', () => {
-  //   const o = {
-  //     a: 1,
-  //     b: {},
-  //     c: [],
-  //   };
-  //   const n = setIn(['a'], 2, o);      
-  //   expect(o).not.to.deep.equal(n);
-  //   expect(n.a).to.equal(2);
-  //   expect(o.a).to.equal(1);
-  //   expect(o.b).to.equal(n.b);
-  //   expect(o.c).to.equal(n.c);
-  // });    
+  it('shallow', () => {
+    const o = {
+      a: 1,
+      b: {},
+      c: [],
+    };
+    const n = setIn(['a'], 2, o);      
+    expect(o).not.to.deep.equal(n);
+    expect(n.a).to.equal(2);
+    expect(o.a).to.equal(1);
+    expect(o.b).to.equal(n.b);
+    expect(o.c).to.equal(n.c);
+  });    
   it('deep', () => {
     const o = {
       a: {
