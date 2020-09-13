@@ -1,7 +1,30 @@
 import { expect } from "chai";
 import { setIn } from "../src/setIn";
 
-describe('setIn should perform immutable set', () => {    
+describe('setIn should perform immutable set', () => {
+  it('should throw an error when first argument is not an array', () => {
+    const o = {
+      a: 1
+    };
+    expect(() => {setIn('a', 2, o)}).to.throw('First argument should be an array');
+  });
+  it('should throw an error when third argument is an array', () => {
+    const o = [];
+    expect(() => {setIn(['a'], 2, o)}).to.throw('Third argument should not be an array');
+  });
+  it('should throw an error when executed with less than 3 arguments', () => {
+    const o = {
+      a: {
+        b: {
+          c: {
+            d: 1
+          }
+        },
+      },
+      u: {}
+    };
+    expect(() => {setIn(['a'], 2)}).to.throw('Function needs to be called with 3 arguments');
+  });  
   it('shallow', () => {
     const o = {
       a: 1,
@@ -49,7 +72,6 @@ describe('setIn should perform immutable set', () => {
       c: [],
     };
     const n = setIn(['a','b'], 2, o);      
-    console.log(n);
     expect(o).not.to.deep.equal(n);
     expect(n.a.b).to.equal(2);
     expect(o.a).to.equal(1);
@@ -141,7 +163,7 @@ describe('setIn should perform immutable set', () => {
     expect(o.a.b.c.d).to.to.equal(n.a.b.c.d);              
     expect(o.u).not.to.deep.equal(n.u);
     expect(n.u).to.equal(2);
-  });
+  });  
   it('deep - not existing property', () => {
     const o = {
       a: {
