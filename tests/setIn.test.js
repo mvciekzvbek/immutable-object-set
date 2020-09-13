@@ -12,7 +12,7 @@ describe('setIn should perform immutable set', () => {
     const o = [];
     expect(() => {setIn(['a'], 2, o)}).to.throw('Third argument should not be an array');
   });
-  it('should throw an error when executed with less than 3 arguments', () => {
+  it('should throw an error when executed with wrong amount of arguments', () => {
     const o = {
       a: {
         b: {
@@ -23,7 +23,7 @@ describe('setIn should perform immutable set', () => {
       },
       u: {}
     };
-    expect(() => {setIn(['a'], 2)}).to.throw('Function needs to be called with 3 arguments');
+    expect(() => {setIn(['a'], 2)}).to.throw('Function needs to be called with exactly 3 arguments - path, value, object');
   });  
   it('shallow', () => {
     const o = {

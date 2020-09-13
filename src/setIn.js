@@ -1,6 +1,6 @@
 export const setIn = (...args) => {
-  if (args.length < 3) {
-    throw new Error('Function needs to be called with 3 arguments');
+  if (args.length !== 3) {
+    throw new Error('Function needs to be called with exactly 3 arguments - path, value, object');
   }
 
   let [path, value, object] = args;
